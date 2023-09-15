@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
-import App from "./sentry/App";
+import App from "./swiper/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
