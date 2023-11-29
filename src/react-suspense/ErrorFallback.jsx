@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 export const ErrorFallback = ({ error, resetErrorBoundary }) => {
   return (
     <div>
