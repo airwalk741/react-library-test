@@ -24,17 +24,23 @@ export default function App() {
     } catch (error) {
       const { method, url, params, headers } = error.config; // axios의 error객체
       const { data, status } = error.response; // axios의 error객체
-      Sentry.setContext("API Request Detail", {
-        method,
-        url,
-        params,
-        data,
-        headers,
+      Sentry.withScope((scope) => {
+        scope.setTag("type", "api");
+        Sentry.captureException(`에러 발생 ${error}`);
+
+        // Sentry.setContext("API Request Detail", {
+        //   method,
+        //   url,
+        //   params,
+        //   data,
+        //   headers,
+        // });
       });
-      Sentry.setContext("API Response Detail", {
-        status,
-        data,
-      });
+
+      // Sentry.setContext("API Response Detail", {
+      //   status,
+      //   data,
+      // });
     }
   };
 
