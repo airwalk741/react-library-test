@@ -31,4 +31,15 @@ module.exports = (app) => {
       },
     })
   );
+
+  app.use(
+    createProxyMiddleware("/mqtt", {
+      ws: true,
+      changeOrigin: true,
+      autoRewrite: true,
+      secure: false,
+      // target: "ws://192.168.13.5:21985",
+      target: "https://192.168.13.5:21985",
+    })
+  );
 };
