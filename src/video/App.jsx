@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import mqtt from "mqtt";
 
-const MQTTURL = "ws://" + window.location.host + "/mqtt";
-const TOPIC = "truwin/settop/b/data";
+const MQTTURL = "wss://" + window.location.host + "/mqtt";
+const TOPIC = "trusafer/TW230817003/88:A6:EF:70:00:89/30817A0002D/data";
 
 export default function App() {
   let client = useRef(null);
@@ -30,8 +30,10 @@ export default function App() {
 
         client.current.on("message", (topic, message) => {
           if (topic === TOPIC) {
+            const resMessage = JSON.parse(message);
+            console.log(resMessage);
             imgRef.current.src =
-              "data:image/jpeg;base64," + message.toString("base64");
+              "data:image/jpeg;base64," + resMessage.img.toString("base64");
           }
         });
       });

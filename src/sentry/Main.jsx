@@ -2,8 +2,12 @@ import React, { useEffect } from "react";
 
 export default function Main() {
   useEffect(() => {
-    throw Error("qwer");
+    text();
   }, []);
+
+  const text = () => {
+    throw Error("에러테스트 ");
+  };
 
   return (
     <div>
